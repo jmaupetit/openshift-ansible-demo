@@ -14,3 +14,6 @@ venv
 
 # openshift
 openshift.local.clusterup
+
+# ansible
+*.retry

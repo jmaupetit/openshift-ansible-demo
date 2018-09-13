@@ -1,0 +1,35 @@
+# Main definitions
+namespace: "yolo-apps"
+
+app_image_name: "172.30.1.1:5000/yolo-apps/yolocat"
+app_image_tag: "latest"
+
+# Application variants
+cat_app:
+  name: "cat"
+  full_name: "yolo cat"
+  header_bg_color: "red"
+  header_color: "white"
+
+unicorn_app:
+  name: "unicorn"
+  full_name: "yolo unicorn"
+  header_bg_color: "#a78bff"
+  header_color: "white"
+
+dude_app:
+  name: "dude"
+  full_name: "yolo dude"
+  header_bg_color: "#09a38c"
+  header_color: "white"
+
+# This variable should equal one of the variables above, e.g. you should set a
+# default in your playbook:
+app: "{{ cat_app }}"
+
+# OpenShift templates for our app
+openshift_templates:
+  - "templates/secret.yml.j2"
+  - "templates/dc.yml.j2"
+  - "templates/svc.yml.j2"
+  - "templates/route.yml.j2"

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  namespace: "{{ namespace }}"
+  name: "{{ app.name }}"
+  labels:
+    app: "{{ app.name }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ app.name }}"
+    spec:
+      containers:
+        - name: "{{ app.name }}"
+          image: "{{ app_image_name }}:{{ app_image_tag }}"
+          env:
+            - name: YOLO_APP_NAME
+              value: "{{ app.full_name }}"
+            - name: YOLO_HEADER_BG_COLOR
+              value: "{{ app.header_bg_color }}"
+            - name: YOLO_HEADER_COLOR
+              value: "{{ app.header_color }}"
+          envFrom:
+            - secretRef:
+                name: yolo

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Route
+metadata:
+  namespace: "{{ namespace }}"
+  name: "{{ app.name }}"
+  labels:
+    app: "{{ app.name }}"
+spec:
+  host: ""
+  tls:
+    termination: edge
+  port:
+    targetPort: "{{ app.name }}-8080-tcp"
+  to:
+    kind: Service
+    name: "{{ app.name }}"
