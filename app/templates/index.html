@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>{{ application_name }}</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .gif-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .gif-container h1 {
+      margin: 0;
+      padding: 2rem 0 2rem 0;
+      width: 100%;
+      background-color: {{ header_bg_color }};
+      color: {{ header_color }};
+      text-align: center;
+      text-transform: uppercase;
+      font-family: 'Covered By Your Grace',
+      cursive;
+      font-size: 7rem;
+    }
+
+    .gif-container iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gif-container .empty {
+      padding: 3rem 0 3rem 0;
+    }
+
+    .errors-container {
+      max-width: 80%;
+      padding: 1rem 0 1rem 0;
+      border-top: 3px solid red;
+    }
+
+    .errors-container .errors {
+      padding: 1rem 0 1rem 0;
+      list-style-position: inside;
+    }
+
+    .errors-container .error {}
+  </style>
+</head>
+
+<body>
+  <div class="gif-container">
+
+    <h1>{{ application_name }}</h1>
+
+    {% if gif_id %}
+    <iframe
+      src="https://giphy.com/embed/{{ gif_id }}"
+      frameborder="0"
+      allowFullScreen
+    ></iframe>
+    {% else %}
+    <div class="empty">
+      Nothing to show here :(
+    </div>
+    {% endif %}
+
+    {% if errors %}
+    <div class="errors-container">
+      The following error(s) occurred while loading this application:
+
+      <ul class="errors">
+      {% for error in errors %}
+        <li class="error">
+          {{ error }}
+        </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</body>
+
+</html>
