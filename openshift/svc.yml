@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: "yolo-apps"
+  name: "yolo-cat"
+  labels:
+    app: "cat"
+spec:
+  ports:
+    - name: yolo-cat-8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: cat
+    deploymentconfig: "yolo-cat"
+  type: ClusterIP

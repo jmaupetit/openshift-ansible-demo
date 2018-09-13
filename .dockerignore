@@ -14,3 +14,7 @@ venv
 .env
 .git
 .vscode
+
+# openshift
+openshift.local.clusterup
+
