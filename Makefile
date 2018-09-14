@@ -5,16 +5,16 @@ OPENSHIFT_PROJECT=yolo-apps
 OPENSHIFT_DOCKER_IMAGE=$(OPENSHIFT_DOCKER_REGISTRY)/$(OPENSHIFT_PROJECT)/$(DOCKER_IMAGE)
 
 dev:
-	FLASK_ENV=development FLASK_APP=app/index.py venv/bin/flask run --debugger
+	FLASK_ENV=development FLASK_APP=yolo/index.py venv/bin/flask run --debugger
 
 flake8:
-	flake8 app
+	flake8 yolo
 
 pylint:
-	pylint app
+	pylint yolo
 
 black:
-	black -l 79 --check app
+	black -l 79 --check yolo
 
 lint: flake8 black pylint
 
